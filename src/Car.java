@@ -1,38 +1,27 @@
 public class Car {
 
-    private boolean on;
-    private boolean grade;
-    private boolean speedUp;
-
-    public Car(boolean status) {
-        this.on = status;
-    }
+    private BaseStatus Status = new FireOff();
 
     public Car() {
 
     }
 
     public String display() {
-        String returnValue = "Off";
-        if (on) {
-            if (grade && !speedUp) {
-                returnValue = "Grade On";
-            } else if (speedUp && !grade) {
-                returnValue = "Free Run";
-            } else if (speedUp && grade) {
-                returnValue = "Move";
-            } else
-                returnValue = "On";
-        }
-
-        return returnValue;
+        return this.Status.getValue();
     }
 
+
     public void gradeOn() {
-        this.grade = true;
+        this.Status = this.Status.gradeOn();
     }
 
     public void speedUp() {
-        this.speedUp = true;
+       this.Status = this.Status.speedUp();
+    }
+
+    public void turnOn() {
+        this.Status = this.Status.fireOn();
     }
 }
+
+
